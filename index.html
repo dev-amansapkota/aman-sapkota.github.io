@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache"/>
+  <title>Aman Sapkota | UI/UX & Security Enthusiast</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      font-family: 'Inter', sans-serif;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      background: url('https://via.placeholder.com/150') center/cover;
+      border-radius: 50%;
+      border: 4px solid #4a5568;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+    .profile-img:hover {
+      transform: scale(1.1);
+    }
+    .social-icon {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: translateY(-5px);
+      color: #ed8936;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .skill-tag {
+      background: #2d3748;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      margin: 0.25rem;
+      transition: background 0.3s ease;
+    }
+    .skill-tag:hover {
+      background: #ed8936;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // Check if Framer Motion is loaded and access motion from window.framer
+    const motion = window.framer && window.framer.motion ? window.framer.motion : null;
+
+    // Fallback if Framer Motion fails to load
+    const SafeMotion = motion || {
+      div: ({ children, ...props }) => React.createElement('div', props, children),
+      h1: ({ children, ...props }) => React.createElement('h1', props, children),
+      p: ({ children, ...props }) => React.createElement('p', props, children),
+      span: ({ children, ...props }) => React.createElement('span', props, children),
+      footer: ({ children, ...props }) => React.createElement('footer', props, children)
+    };
+
+    const App = () => {
+      const skills = [
+        'UI/UX Design',
+        'Application Development',
+        'Bug Bounty Hunting',
+        'Web Security',
+        'Python Automation',
+        'Responsive Design'
+      ];
+
+      return (
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <SafeMotion.div
+            className="card max-w-lg w-full rounded-2xl p-8 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <SafeMotion.div
+              className="profile-img"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            />
+            <SafeMotion.h1
+              className="text-3xl font-bold mt-6 text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Aman Sapkota
+            </SafeMotion.h1>
+            <SafeMotion.p
+              className="text-gray-400 mt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              UI/UX Designer | Application Developer | Security Enthusiast
+            </SafeMotion.p>
+            <SafeMotion.div
+              className="mt-6 text-gray-300"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <h2 className="text-xl font-semibold">About Me</h2>
+              <p className="mt-4 leading-relaxed">
+                I'm passionate about crafting intuitive user interfaces and responsive websites. My expertise spans UI/UX design, application development, and diving deep into web security through bug bounty hunting. I tackle vulnerabilities like XSS and SQL injection, and I love automating tasks with Python scripts. Let's connect to build something amazing or hunt down the next big bug!
+              </p>
+            </SafeMotion.div>
+            <SafeMotion.div
+              className="mt-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1 }}
+            >
+              <h2 className="text-xl font-semibold">Skills</h2>
+              <div className="flex flex-wrap justify-center mt-4">
+                {skills.map((skill, index) => (
+                  <SafeMotion.span
+                    key={index}
+                    className="skill-tag text-sm text-gray-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 1.2 + index * 0.1 }}
+                  >
+                    {skill}
+                  </SafeMotion.span>
+                ))}
+              </div>
+            </SafeMotion.div>
+            <SafeMotion.div
+              className="mt-8 flex justify-center space-x-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.8 }}
+            >
+              <a href="https://github.com/dev-amansapkota" className="social-icon text-2xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                <i className="bi bi-github"></i>
+              </a>
+              <a href="https://t.me/nebresource" className="social-icon text-2xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                <i className="bi bi-telegram"></i>
+              </a>
+              <a href="https://discord.com/amansapkota__04781" className="social-icon text-2xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                <i className="bi bi-discord"></i>
+              </a>
+              <a href="https://www.youtube.com/@nebresource/videos1" className="social-icon text-2xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                <i className="bi bi-youtube"></i>
+              </a>
+            </SafeMotion.div>
+            <SafeMotion.footer
+              className="mt-8 text-gray-500 text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 2 }}
+            >
+              <p>© 2025 Aman Sapkota. All rights reserved.</p>
+            </SafeMotion.footer>
+          </SafeMotion.div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
