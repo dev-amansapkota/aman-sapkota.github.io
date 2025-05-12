@@ -4,20 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache"/>
-  <title>Aman Sapkota | UI/UX & Security Enthusiast</title>
+  <title>Aman Sapkota | UI/UX Designer & Security Expert</title>
   <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      font-family: 'Inter', sans-serif;
-      color: #e2e8f0;
+      background: linear-gradient(160deg, #0a0e1f 0%, #1c2b4a 100%);
+      font-family: 'Manrope', sans-serif;
+      color: #e5e7eb;
       overflow-x: hidden;
       margin: 0;
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
     }
     .welcome-section {
       height: 100vh;
@@ -25,99 +33,176 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, rgba(237, 137, 54, 0.2) 0%, transparent 70%);
       position: relative;
-      overflow: hidden;
+      z-index: 1;
+      background: radial-gradient(circle at center, rgba(255, 167, 38, 0.2) 0%, transparent 75%);
     }
     .welcome-text {
       font-size: 4rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, #ed8936, #f6ad55);
+      font-weight: 800;
+      color: #ffffff;
+      text-align: center;
+      letter-spacing: -1px;
+      background: linear-gradient(90deg, #ffa726, #fb8c00);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-align: center;
-      letter-spacing: -1px;
     }
     .welcome-subtext {
-      font-size: 1.5rem;
-      color: #94a3b8;
-      margin-top: 1rem;
+      font-size: 1.4rem;
+      color: #b0c4de;
+      margin-top: 1.5rem;
+      max-width: 650px;
       text-align: center;
+      line-height: 1.7;
+      font-weight: 300;
     }
     .scroll-down {
       position: absolute;
-      bottom: 2rem;
-      color: #ed8936;
-      font-size: 1.2rem;
+      bottom: 2.5rem;
+      color: #ffa726;
+      font-size: 1.1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      animation: bounce 2s infinite;
+      gap: 0.6rem;
+      animation: bounce 2.2s infinite;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .scroll-down:hover {
+      color: #fb8c00;
     }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(10px); }
     }
     .profile-img {
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       background: url('https://media.licdn.com/dms/image/v2/D5635AQFb640NvwLafA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1730525519937?e=1747656000&v=beta&t=azJxCQqcQqkh-2x8wa6WBzw9RLQnBwUh7nJ9xwM4uDo') center/cover;
       border-radius: 50%;
-      border: 5px solid #ed8936;
+      border: 6px solid #ffa726;
       margin: 0 auto;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 20px rgba(237, 137, 54, 0.3);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      box-shadow: 0 0 30px rgba(255, 167, 38, 0.5);
     }
     .profile-img:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 30px rgba(237, 137, 54, 0.5);
+      transform: scale(1.12);
+      box-shadow: 0 0 50px rgba(255, 167, 38, 0.7);
     }
     .social-icon {
       transition: transform 0.3s ease, color 0.3s ease;
     }
     .social-icon:hover {
-      transform: scale(1.2);
-      color: #ed8936;
+      transform: scale(1.4);
+      color: #ffa726;
     }
     .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 1.5rem;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      border-radius: 2.5rem;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 167, 38, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .card:hover::before {
+      opacity: 1;
     }
     .card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-20px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
     .skill-tag {
-      background: #1e293b;
-      padding: 0.6rem 1.2rem;
+      background: #1a2b4a;
+      padding: 0.8rem 1.6rem;
       border-radius: 9999px;
-      margin: 0.3rem;
-      transition: background 0.3s ease, transform 0.3s ease;
-      color: #e2e8f0;
+      margin: 0.5rem;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      color: #e5e7eb;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
     .skill-tag:hover {
-      background: #ed8936;
-      transform: scale(1.05);
+      background: #ffa726;
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(255, 167, 38, 0.4);
     }
     .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: #f6ad55;
-      margin-bottom: 1.5rem;
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: #ffa726;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #ffa726;
+      border-radius: 2px;
+    }
+    .content-text {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #d1d5db;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .highlight {
+      color: #ffa726;
+      font-weight: 600;
+    }
+    .error-boundary {
+      color: #ff6b6b;
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
   <div id="root"></div>
   <script type="text/babel">
-    const motion = window.framer && window.framer.motion ? window.framer.motion : null;
+    // Error Boundary Component
+    class ErrorBoundary extends React.Component {
+      state = { hasError: false };
 
-    const SafeMotion = motion || {
+      static getDerivedStateFromError(error) {
+        return { hasError: true };
+      }
+
+      render() {
+        if (this.state.hasError) {
+          return <div className="error-boundary">Something went wrong. Please try refreshing the page.</div>;
+        }
+        return this.props.children;
+      }
+    }
+
+    // Framer Motion Fallback
+    const SafeMotion = window.motion || {
       div: ({ children, ...props }) => React.createElement('div', props, children),
       h1: ({ children, ...props }) => React.createElement('h1', props, children),
       h2: ({ children, ...props }) => React.createElement('h2', props, children),
@@ -126,154 +211,182 @@
       footer: ({ children, ...props }) => React.createElement('footer', props, children)
     };
 
-    const WelcomeSection = () => (
-      <SafeMotion.div
-        className="welcome-section"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <SafeMotion.h1
-          className="welcome-text"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Welcome to My Portfolio
-        </SafeMotion.h1>
-        <SafeMotion.p
-          className="welcome-subtext"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Discover my passion for UI/UX, development, and security
-        </SafeMotion.p>
-        <SafeMotion.div
-          className="scroll-down"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
-          <span>Scroll Down</span>
-          <i className="bi bi-chevron-down"></i>
+    const WelcomeSection = () => {
+      React.useEffect(() => {
+        if (window.particlesJS) {
+          try {
+            window.particlesJS('particles-js', {
+              particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffa726' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#ffa726', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+              },
+              interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
+              },
+              retina_detect: true
+            });
+          } catch (e) {
+            console.error('Particles.js initialization failed:', e);
+          }
+        }
+      }, []);
+
+      return (
+        <SafeMotion.div className="welcome-section">
+          <div id="particles-js"></div>
+          <SafeMotion.h1
+            className="welcome-text"
+            initial={{ y: -80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+          >
+            Aman Sapkota
+          </SafeMotion.h1>
+          <SafeMotion.p
+            className="welcome-subtext"
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
+          >
+            Crafting seamless <span className="highlight">user experiences</span>, building robust <span className="highlight">applications</span>, and securing the <span className="highlight">digital world</span> with expertise and passion.
+          </SafeMotion.p>
+          <SafeMotion.div
+            className="scroll-down"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 1 }}
+          >
+            <span>Discover My Work</span>
+            <i className="bi bi-chevron-down"></i>
+          </SafeMotion.div>
         </SafeMotion.div>
-      </SafeMotion.div>
-    );
+      );
+    };
 
     const App = () => {
       const skills = [
         'UI/UX Design',
         'Application Development',
-        'Bug Bounty Hunting',
         'Web Security',
+        'Bug Bounty',
         'Python Automation',
         'Responsive Design'
       ];
 
       return (
-        <div>
-          <WelcomeSection />
-          <SafeMotion.div
-            className="min-h-screen flex items-center justify-center p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
+        <ErrorBoundary>
+          <div>
+            <WelcomeSection />
             <SafeMotion.div
-              className="card max-w-lg w-full rounded-2xl p-10 text-center"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="min-h-screen flex items-center justify-center p-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
             >
               <SafeMotion.div
-                className="profile-img"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              />
-              <SafeMotion.h1
-                className="text-4xl font-bold mt-6 text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                className="card max-w-3xl w-full"
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
               >
-                Aman Sapkota
-              </SafeMotion.h1>
-              <SafeMotion.p
-                className="text-gray-400 mt-3 text-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
-                UI/UX Designer | Application Developer | Security Enthusiast
-              </SafeMotion.p>
-              <SafeMotion.div
-                className="mt-8 text-gray-300"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-              >
-                <h2 className="section-title">About Me</h2>
-                <p className="mt-4 leading-relaxed text-gray-200">
-                  I'm passionate about crafting intuitive user interfaces and responsive websites. My expertise spans UI/UX design, application development, and diving deep into web security through bug bounty hunting. I tackle vulnerabilities like XSS and SQL injection, and I love automating tasks with Python scripts. Let's connect to build something amazing or hunt down the next big bug!
-                </p>
+                <SafeMotion.div
+                  className="profile-img"
+                  initial={{ scale: 0.7, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+                <SafeMotion.h1
+                  className="text-5xl font-extrabold mt-10 text-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                >
+                  Aman Sapkota
+                </SafeMotion.h1>
+                <SafeMotion.p
+                  className="text-gray-300 mt-5 text-xl font-light"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                >
+                  UI/UX Designer | Application Developer | Security Expert
+                </SafeMotion.p>
+                <SafeMotion.div
+                  className="mt-12"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                >
+                  <h2 className="section-title">About Me</h2>
+                  <p className="content-text">
+                    I'm Aman, a passionate designer and developer with a mission to create intuitive, user-centric digital experiences. From crafting pixel-perfect UI/UX designs to building scalable applications, I bring creativity and precision to every project. My expertise in web security allows me to uncover vulnerabilities through bug bounty programs, ensuring robust, safe systems. I also leverage Python to automate workflows, saving time and boosting efficiency. Whether it's designing a sleek interface or securing a platform, I'm driven by innovation and impact. Let's connect to build something groundbreaking!
+                  </p>
+                </SafeMotion.div>
+                <SafeMotion.div
+                  className="mt-12"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                >
+                  <h2 className="section-title">My Expertise</h2>
+                  <div className="flex flex-wrap justify-center mt-6">
+                    {skills.map((skill, index) => (
+                      <SafeMotion.span
+                        key={index}
+                        className="skill-tag"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 1.3 + index * 0.2 }}
+                      >
+                        {skill}
+                      </SafeMotion.span>
+                    ))}
+                  </div>
+                </SafeMotion.div>
+                <SafeMotion.div
+                  className="mt-14 social-links"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 2 }}
+                >
+                  <a href="https://github.com/dev-amansapkota" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                    <i className="bi bi-github"></i>
+                  </a>
+                  <a href="https://t.me/nebresource" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                    <i className="bi bi-telegram"></i>
+                  </a>
+                  <a href="https://discord.com/amansapkota__04781" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                    <i className="bi bi-discord"></i>
+                  </a>
+                  <a href="https://www.youtube.com/@nebresource/videos1" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
+                    <i className="bi bi-youtube"></i>
+                  </a>
+                </SafeMotion.div>
+                <SafeMotion.footer
+                  className="mt-14 text-gray-500 text-sm text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 2.2 }}
+                >
+                  <p>© 2025 Aman Sapkota. All rights reserved.</p>
+                </SafeMotion.footer>
               </SafeMotion.div>
-              <SafeMotion.div
-                className="mt-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1 }}
-              >
-                <h2 className="section-title">Skills</h2>
-                <div className="flex flex-wrap justify-center mt-4">
-                  {skills.map((skill, index) => (
-                    <SafeMotion.span
-                      key={index}
-                      className="skill-tag text-sm"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 1.2 + index * 0.1 }}
-                    >
-                      {skill}
-                    </SafeMotion.span>
-                  ))}
-                </div>
-              </SafeMotion.div>
-              <SafeMotion.div
-                className="mt-10 flex justify-center space-x-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1.8 }}
-              >
-                <a href="https://github.com/dev-amansapkota" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
-                  <i className="bi bi-github"></i>
-                </a>
-                <a href="https://t.me/nebresource" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
-                  <i className="bi bi-telegram"></i>
-                </a>
-                <a href="https://discord.com/amansapkota__04781" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
-                  <i className="bi bi-discord"></i>
-                </a>
-                <a href="https://www.youtube.com/@nebresource/videos1" className="social-icon text-3xl text-gray-300" target="_blank" rel="noopener noreferrer">
-                  <i className="bi bi-youtube"></i>
-                </a>
-              </SafeMotion.div>
-              <SafeMotion.footer
-                className="mt-10 text-gray-500 text-sm"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 2 }}
-              >
-                <p>© 2025 Aman Sapkota. All rights reserved.</p>
-              </SafeMotion.footer>
             </SafeMotion.div>
-          </SafeMotion.div>
-        </div>
+          </div>
+        </ErrorBoundary>
       );
     };
 
-    ReactDOM.render(<App />, document.getElementById('root'));
+    // Use createRoot for React 18
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
   </script>
 </body>
 </html>
